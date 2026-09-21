@@ -1,0 +1,607 @@
+{
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "n_images": 13,
+  "images": [
+    "IMG-20260410-WA0016.jpg",
+    "IMG-20260410-WA0017.jpg",
+    "IMG-20260410-WA0018.jpg",
+    "IMG-20260410-WA0019.jpg",
+    "IMG-20260410-WA0020.jpg",
+    "IMG_20200412_154249.jpg",
+    "IMG_20250915_112359.jpg",
+    "IMG_20260209_192318.jpg",
+    "IMG_20260210_142258.jpg",
+    "MVIMG_20260222_204918.jpg",
+    "MVIMG_20260303_200132.jpg",
+    "MVIMG_20260304_120022.jpg",
+    "MVIMG_20260308_142023.jpg"
+  ],
+  "n_requests": 141,
+  "sub_index": 0,
+  "n_subbatches": 0,
+  "submitted_at": "2026-09-21T09:35:18.162424+00:00",
+  "prompt_sha256": "f5d0539e395750c0c34fe30abbcc48f8235f7966750deb26031376673c903fb2",
+  "max_image_dim": 2048,
+  "jpeg_quality": 85,
+  "id_map": {
+    "idx0": {
+      "iteration": 22,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx1": {
+      "iteration": 22,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx2": {
+      "iteration": 22,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx3": {
+      "iteration": 22,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx4": {
+      "iteration": 23,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx5": {
+      "iteration": 23,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx6": {
+      "iteration": 23,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx7": {
+      "iteration": 23,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx8": {
+      "iteration": 23,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx9": {
+      "iteration": 23,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx10": {
+      "iteration": 23,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx11": {
+      "iteration": 23,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx12": {
+      "iteration": 23,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx13": {
+      "iteration": 23,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx14": {
+      "iteration": 23,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx15": {
+      "iteration": 23,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx16": {
+      "iteration": 23,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx17": {
+      "iteration": 24,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx18": {
+      "iteration": 24,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx19": {
+      "iteration": 24,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx20": {
+      "iteration": 24,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx21": {
+      "iteration": 24,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx22": {
+      "iteration": 24,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx23": {
+      "iteration": 24,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx24": {
+      "iteration": 24,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx25": {
+      "iteration": 24,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx26": {
+      "iteration": 24,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx27": {
+      "iteration": 24,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx28": {
+      "iteration": 24,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx29": {
+      "iteration": 24,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx30": {
+      "iteration": 25,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx31": {
+      "iteration": 25,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx32": {
+      "iteration": 25,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx33": {
+      "iteration": 25,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx34": {
+      "iteration": 25,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx35": {
+      "iteration": 25,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx36": {
+      "iteration": 25,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx37": {
+      "iteration": 25,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx38": {
+      "iteration": 25,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx39": {
+      "iteration": 25,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx40": {
+      "iteration": 25,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx41": {
+      "iteration": 25,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx42": {
+      "iteration": 25,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx43": {
+      "iteration": 26,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx44": {
+      "iteration": 26,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx45": {
+      "iteration": 26,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx46": {
+      "iteration": 26,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx47": {
+      "iteration": 26,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx48": {
+      "iteration": 26,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx49": {
+      "iteration": 26,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx50": {
+      "iteration": 26,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx51": {
+      "iteration": 26,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx52": {
+      "iteration": 26,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx53": {
+      "iteration": 26,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx54": {
+      "iteration": 26,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx55": {
+      "iteration": 26,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx56": {
+      "iteration": 27,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx57": {
+      "iteration": 27,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx58": {
+      "iteration": 27,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx59": {
+      "iteration": 27,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx60": {
+      "iteration": 27,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx61": {
+      "iteration": 27,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx62": {
+      "iteration": 27,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx63": {
+      "iteration": 27,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx64": {
+      "iteration": 27,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx65": {
+      "iteration": 27,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx66": {
+      "iteration": 27,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx67": {
+      "iteration": 27,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx68": {
+      "iteration": 27,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx69": {
+      "iteration": 28,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx70": {
+      "iteration": 28,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx71": {
+      "iteration": 28,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx72": {
+      "iteration": 28,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx73": {
+      "iteration": 28,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx74": {
+      "iteration": 28,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx75": {
+      "iteration": 28,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx76": {
+      "iteration": 28,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx77": {
+      "iteration": 28,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx78": {
+      "iteration": 28,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx79": {
+      "iteration": 28,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx80": {
+      "iteration": 28,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx81": {
+      "iteration": 28,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx82": {
+      "iteration": 29,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx83": {
+      "iteration": 29,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx84": {
+      "iteration": 29,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx85": {
+      "iteration": 29,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx86": {
+      "iteration": 29,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx87": {
+      "iteration": 29,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx88": {
+      "iteration": 29,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx89": {
+      "iteration": 29,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx90": {
+      "iteration": 29,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx91": {
+      "iteration": 29,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx92": {
+      "iteration": 29,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx93": {
+      "iteration": 29,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx94": {
+      "iteration": 29,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx95": {
+      "iteration": 30,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx96": {
+      "iteration": 30,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx97": {
+      "iteration": 30,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx98": {
+      "iteration": 30,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx99": {
+      "iteration": 30,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx100": {
+      "iteration": 30,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx101": {
+      "iteration": 30,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx102": {
+      "iteration": 30,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx103": {
+      "iteration": 30,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx104": {
+      "iteration": 30,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx105": {
+      "iteration": 30,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx106": {
+      "iteration": 30,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx107": {
+      "iteration": 30,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx108": {
+      "iteration": 31,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx109": {
+      "iteration": 31,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx110": {
+      "iteration": 31,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx111": {
+      "iteration": 31,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx112": {
+      "iteration": 31,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx113": {
+      "iteration": 31,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx114": {
+      "iteration": 31,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx115": {
+      "iteration": 31,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx116": {
+      "iteration": 31,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx117": {
+      "iteration": 31,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx118": {
+      "iteration": 31,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx119": {
+      "iteration": 31,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx120": {
+      "iteration": 31,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx121": {
+      "iteration": 32,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx122": {
+      "iteration": 32,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx123": {
+      "iteration": 32,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx124": {
+      "iteration": 32,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx125": {
+      "iteration": 32,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx126": {
+      "iteration": 32,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx127": {
+      "iteration": 32,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx128": {
+      "iteration": 32,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx129": {
+      "iteration": 32,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx130": {
+      "iteration": 32,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx131": {
+      "iteration": 32,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx132": {
+      "iteration": 32,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx133": {
+      "iteration": 32,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx134": {
+      "iteration": 33,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx135": {
+      "iteration": 33,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx136": {
+      "iteration": 33,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx137": {
+      "iteration": 33,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx138": {
+      "iteration": 33,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx139": {
+      "iteration": 33,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx140": {
+      "iteration": 33,
+      "image_file": "IMG_20250915_112359.jpg"
+    }
+  },
+  "batch_id": "batch_6ab0fa55a3848190b18ed664520cbf4b",
+  "input_file_id": "file-RiKtq3Wgj36fp8etcqh3nk",
+  "arm": {
+    "name": "gpt-6-astra",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "max_tokens": 16000,
+    "temperature": null,
+    "effort": "low",
+    "price_in": 5.0,
+    "price_out": 25.0
+  },
+  "status": "downloaded",
+  "label": "gpt-6-astra_20260921T093458857853Z"
+}
