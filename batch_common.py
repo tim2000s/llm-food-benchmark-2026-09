@@ -296,6 +296,7 @@ def build_result_dicts(items: list[dict], model: str, provider: str,
             # Latency is genuinely unknown for batch — clear the spurious 0.0
             qr.latency_s = None
         row = serialise_query_result(qr, is_batch=True)
+        row["raw_response"] = item.get("raw_text")
         row.update(item.get("extra") or {})
         out.append(row)
     return out

@@ -129,6 +129,25 @@ class TestOpenAIResults(unittest.TestCase):
         self.assertEqual(item["extra"]["incomplete_reason"], "max_output_tokens")
 
 
+class TestParser(unittest.TestCase):
+    def test_malformed_json_is_a_parse_failure_not_zero_grams(self):
+        # Fable 5.1 dropped a key's opening quote; the brace scan then found a
+        # single food item and the April parser scored it as an empty success.
+        raw = ('{"image_type": "food_photo", "food_items": [{"name": "stuffing", '
+               '"carbs_per_100": 20, "portion_estimate_size": 130},\n'
+               '{"name": "pork",\nassessment_notes": "x"}]}').replace("\\n", "\n")
+        from food_nutrition_benchmark import parse_response
+        qr = parse_response(raw, "m", "claude", "a.jpg", 1, 0.0)
+        self.assertFalse(qr.success)
+        self.assertEqual(qr.error_class, "parse")
+
+    def test_valid_response_still_parses(self):
+        from food_nutrition_benchmark import parse_response
+        qr = parse_response(GOOD_JSON, "m", "claude", "a.jpg", 1, 0.0)
+        self.assertTrue(qr.success)
+        self.assertEqual(len(qr.food_items), 1)
+
+
 class TestResultRows(unittest.TestCase):
     def test_extras_reach_the_row(self):
         _, id_map = make_id_mapping([(1, "a.jpg")])
@@ -139,6 +158,7 @@ class TestResultRows(unittest.TestCase):
         self.assertTrue(row["success"])
         self.assertEqual(row["stop_reason"], "end_turn")
         self.assertEqual(row["reasoning_tokens"], 7)
+        self.assertEqual(row["raw_response"], GOOD_JSON)
 
     def test_refusal_row_is_unsuccessful(self):
         _, id_map = make_id_mapping([(1, "a.jpg")])
@@ -157,9 +177,32 @@ class TestResume(unittest.TestCase):
                 sdir.mkdir(parents=True)
                 _, live = make_id_mapping([(1, "a.jpg"), (1, "b.jpg")])
                 _, dead = make_id_mapping([(2, "a.jpg")])
-                (sdir / "chunk_1.json").write_text(json.dumps({"status": "submitted", "id_map": live}))
-                (sdir / "chunk_2.json").write_text(json.dumps({"status": "abandoned", "id_map": dead}))
+                (sdir / "chunk_1.json").write_text(json.dumps({"status": "submitted", "batch_id": "b1", "id_map": live}))
+                (sdir / "chunk_2.json").write_text(json.dumps({"status": "abandoned", "batch_id": "b2", "id_map": dead}))
                 self.assertEqual(rerun.covered_pairs("x"), {(1, "a.jpg"), (1, "b.jpg")})
+
+    def _downloaded(self, d, rows_by_batch):
+        """Write downloaded chunks and their results files; rows are (it, img, success, error_class)."""
+        sdir = rerun.state_dir("x")
+        sdir.mkdir(parents=True, exist_ok=True)
+        for bid, rows in rows_by_batch.items():
+            _, id_map = make_id_mapping([(it, img) for it, img, *_ in rows])
+            (sdir / f"chunk_{bid}.json").write_text(json.dumps(
+                {"status": "downloaded", "batch_id": bid, "id_map": id_map}))
+            (rerun.arm_dir("x") / f"results_{bid}.json").write_text(json.dumps({"results": [
+                {"iteration": it, "image_file": img, "success": ok, "error_class": ec}
+                for it, img, ok, ec in rows]}))
+
+    def test_api_errors_are_retried_but_refusals_and_parse_failures_are_not(self):
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(rerun, "RESULTS_DIR", Path(d)):
+            self._downloaded(d, {"b1": [(1, "a.jpg", True, None), (2, "a.jpg", False, "api"),
+                                        (3, "a.jpg", False, "refusal"), (4, "a.jpg", False, "parse")]})
+            self.assertEqual(rerun.covered_pairs("x"), {(1, "a.jpg"), (3, "a.jpg"), (4, "a.jpg")})
+
+    def test_api_error_that_later_succeeded_is_covered(self):
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(rerun, "RESULTS_DIR", Path(d)):
+            self._downloaded(d, {"b1": [(2, "a.jpg", False, "api")], "b2": [(2, "a.jpg", True, None)]})
+            self.assertEqual(rerun.covered_pairs("x"), {(2, "a.jpg")})
 
     def test_chunk_size_respects_cap_and_payload(self):
         arm = get_arm("fable-5-1")

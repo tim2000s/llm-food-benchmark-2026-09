@@ -557,6 +557,12 @@ def parse_response(raw: str, model: str, provider: str, image_file: str,
     usage = usage or {}
     try:
         data = extract_json(raw)
+        # Malformed JSON can leave extract_json holding a nested object (one food
+        # item) rather than the response. Scoring that as a success with no food
+        # items would enter it as 0 g, so a response without a top-level
+        # food_items list is a parse failure.
+        if not isinstance(data.get("food_items"), list):
+            raise ValueError("response has no top-level food_items list")
         items = []
         coercion_failures = 0
         for fi in data.get("food_items", []):

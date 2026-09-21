@@ -6,6 +6,7 @@ Run the September 2026 rerun: every test photograph to every arm, N times.
     python3 rerun.py estimate --iterations 50 --count-tokens   # free token count (Claude arms)
     python3 rerun.py run --iterations 50 --yes           # all arms in parallel
     python3 rerun.py status
+    python3 rerun.py redownload --arms fable-5-1     # re-parse finished batches
 
 Each arm runs in its own process, so a slow provider does not hold up the
 others. Within an arm, requests are submitted in chunks and each chunk is a
@@ -115,8 +116,22 @@ def live_states(arm_name: str) -> list[tuple[Path, dict]]:
 
 
 def covered_pairs(arm_name: str) -> set[tuple[int, str]]:
-    return {(e["iteration"], e["image_file"])
-            for _, meta in live_states(arm_name) for e in meta["id_map"].values()}
+    """Pairs that need no further submission: those in a live chunk, less any
+    whose downloaded row failed at the API (credit, rate or server errors),
+    which are worth sending again. Refusals and parse failures are results and
+    are not resubmitted."""
+    covered, retry = set(), set()
+    for _, meta in live_states(arm_name):
+        covered |= {(e["iteration"], e["image_file"]) for e in meta["id_map"].values()}
+        results = arm_dir(arm_name) / f"results_{meta['batch_id']}.json"
+        if meta.get("status") == "downloaded" and results.exists():
+            retry |= {(r["iteration"], r["image_file"]) for r in json.load(open(results))["results"]
+                      if not r["success"] and r.get("error_class") == "api"}
+    succeeded = set()
+    for f in arm_dir(arm_name).glob("results_*.json"):
+        succeeded |= {(r["iteration"], r["image_file"]) for r in json.load(open(f))["results"]
+                      if r["success"] or r.get("error_class") != "api"}
+    return covered - (retry - succeeded)
 
 
 def chunk_size(mod, arm: dict, image_data: dict[str, str], cap: int) -> int:
@@ -289,6 +304,18 @@ def _count_claude_input(arm: dict, image_data: dict[str, str]) -> tuple[int, int
     return min(counts), max(counts)
 
 
+def redownload(arm_names: list[str]) -> None:
+    """Fetch every downloaded batch again and rewrite its results file with the
+    current parser. Both providers keep batch results for about 29 days."""
+    for name in arm_names:
+        arm = get_arm(name)
+        mod = _provider_module(arm["provider"])
+        provider = mod.Provider(os.environ[API_KEY_ENV[arm["provider"]]])
+        for sf, meta in live_states(name):
+            if meta.get("status") == "downloaded":
+                download(provider, arm, sf, meta)
+
+
 def status(arm_names: list[str]) -> None:
     for name in arm_names:
         states = sorted(state_dir(name).glob("chunk_*.json"))
@@ -320,7 +347,7 @@ def run_parallel(arm_names: list[str], iterations: int, max_per_chunk: int) -> N
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("action", choices=["estimate", "run", "status", "_arm"])
+    ap.add_argument("action", choices=["estimate", "run", "status", "redownload", "_arm"])
     ap.add_argument("arm", nargs="?", help="internal: the arm for _arm")
     ap.add_argument("--arms", nargs="+", default=list(ARMS), choices=list(ARMS))
     ap.add_argument("--iterations", "-n", type=int, default=50)
@@ -334,6 +361,8 @@ def main():
         estimate(args.arms, args.iterations, args.max_per_chunk, args.count_tokens)
     elif args.action == "status":
         status(args.arms)
+    elif args.action == "redownload":
+        redownload(args.arms)
     elif args.action == "run":
         if not args.yes:
             sys.exit("run spends money; check `estimate` first and pass --yes")
