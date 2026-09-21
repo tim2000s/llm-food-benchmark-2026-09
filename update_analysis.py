@@ -220,7 +220,7 @@ def fig_cv(summary: dict, path: Path) -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    ink, muted, grid, surface = "#0b0b0b", "#52514e", "#e4e3dd", "#fcfcfb"
+    ink, muted, grid, surface = "#0b0b0b", "#52514e", "#e4e3dd", "#ffffff"
     blue, grey = "#2a78d6", "#8d8c85"
     fig, ax = plt.subplots(figsize=(7.2, 3.6), dpi=200)
     fig.patch.set_facecolor(surface)
@@ -257,7 +257,7 @@ def fig_averaging(widths: dict, path: Path) -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    ink, muted, grid, surface = "#0b0b0b", "#52514e", "#e4e3dd", "#fcfcfb"
+    ink, muted, grid, surface = "#0b0b0b", "#52514e", "#e4e3dd", "#ffffff"
     ramp = {1: "#9ec5f4", 3: "#3987e5", 5: "#184f95"}
     fig, ax = plt.subplots(figsize=(7.2, 3.4), dpi=200)
     fig.patch.set_facecolor(surface)
@@ -281,7 +281,7 @@ def fig_averaging(widths: dict, path: Path) -> None:
         ax.spines[s].set_visible(False)
     ax.spines["bottom"].set_color(grid)
     ax.set_xlim(left=0)
-    ax.legend(fontsize=7, frameon=False, loc="lower right")
+    ax.legend(fontsize=7, frameon=False, loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=3)
     fig.tight_layout()
     fig.savefig(path, facecolor=surface)
     plt.close(fig)
