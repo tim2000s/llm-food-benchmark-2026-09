@@ -382,3 +382,55 @@ class TestRetryFlow(unittest.TestCase):
             (rerun.state_dir("x") / "chunk_b2.json").write_text(json.dumps(
                 {"status": "submitted", "batch_id": "b2", "id_map": id_map}))
             self.assertEqual(rerun.covered_pairs("x"), {(2, "a.jpg")})
+
+
+import averaging_risk as ar
+
+
+class TestAveragingRisk(unittest.TestCase):
+    REF = {"a.jpg": {"total_portion_carbs_g": 40, "reference_quality": 1}}
+
+    def _run(self, arms, **kw):
+        return ar.run(arms, self.REF, np.median, replace=True, seed=1, ks=(1, 5, 20), draws=4000,
+                      exclude=frozenset(), **kw)["per_photo"]
+
+    def test_single_call_rate_is_the_empirical_rate(self):
+        vals = [40.0] * 30 + [70.0] * 20          # 40% of answers are 30 g over
+        m = self._run({"x": {"a.jpg": vals}})["x"]["a.jpg"][1]
+        self.assertAlmostEqual(m["p_over_2u"], 0.4, delta=0.03)
+
+    def test_averaging_drives_a_systematic_overestimate_to_certainty(self):
+        # Typical answer 65 g against 40 g: 25 g over, so the 20-call median overdoses every time.
+        vals = list(np.random.default_rng(0).normal(65, 8, 50))
+        by_k = self._run({"x": {"a.jpg": vals}})["x"]["a.jpg"]
+        self.assertLess(by_k[1]["p_over_2u"], 0.99)
+        self.assertGreater(by_k[20]["p_over_2u"], 0.99)
+
+    def test_averaging_removes_overdose_when_typical_answer_is_close(self):
+        vals = list(np.random.default_rng(0).normal(50, 8, 50))   # typical 10 g over
+        by_k = self._run({"x": {"a.jpg": vals}})["x"]["a.jpg"]
+        self.assertGreater(by_k[1]["p_over_2u"], 0.05)
+        self.assertLess(by_k[20]["p_over_2u"], 0.005)
+
+    def test_variability_risk_falls_with_k(self):
+        vals = list(np.random.default_rng(0).normal(40, 10, 50))
+        by_k = self._run({"x": {"a.jpg": vals}})["x"]["a.jpg"]
+        self.assertGreater(by_k[1]["p_off_own_10g"], 0.2)
+        self.assertLess(by_k[20]["p_off_own_10g"], by_k[1]["p_off_own_10g"] / 5)
+        self.assertLess(by_k[20]["width_g"], by_k[1]["width_g"] / 2)
+
+    def test_arms_share_draws(self):
+        vals = np.random.default_rng(3).normal(40, 10, 50)
+        res = self._run({"x": {"a.jpg": list(vals)}, "y": {"a.jpg": list(vals + 5)}})
+        for k in (1, 5, 20):
+            self.assertAlmostEqual(res["x"]["a.jpg"][k]["width_g"], res["y"]["a.jpg"][k]["width_g"], places=9)
+
+    def test_constant_answers_have_no_spread(self):
+        m = self._run({"x": {"a.jpg": [55.0] * 50}})["x"]["a.jpg"][20]
+        self.assertEqual(m["width_g"], 0.0)
+        self.assertEqual(m["p_off_own_10g"], 0.0)
+
+    def test_without_replacement_skips_k_above_n(self):
+        res = ar.run({"x": {"a.jpg": [40.0] * 10}}, self.REF, np.median, replace=False, seed=1,
+                     ks=(1, 5, 20), draws=100, exclude=frozenset())["per_photo"]
+        self.assertEqual(sorted(res["x"]["a.jpg"]), [1, 5])
