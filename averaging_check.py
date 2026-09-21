@@ -19,6 +19,12 @@ the sum over food items of carbs_per_100 x portion_estimate_size / 100.
 
     python3 averaging_check.py                   # the rerun arms
     python3 averaging_check.py --april           # plus the April runs at temperature 0.01
+    python3 averaging_check.py --exclude MVIMG_20260222_204918.jpg --tag no_churros
+
+A photograph on which one arm mostly fails to parse still enters the table,
+but every arm is cut to that arm's few successes there; --exclude drops it
+so the other photographs keep their full count, and --tag keeps the two
+outputs apart.
 
 Writes output/averaging_check.json and output/AVERAGING_CHECK.md.
 """
@@ -126,7 +132,8 @@ def write_report(res: dict, path: Path) -> None:
         f"the same subsets for every arm, seed {res['seed']}. Each cell is the median across "
         "photographs of the spread of the k-call median, in grams of carbohydrate. The width is "
         "the distance between the 5th and 95th percentiles, so nine answers in ten fall inside it. "
-        "Mean absolute error is against the reference values in usda_reference.json.",
+        "Mean absolute error is against the reference values in usda_reference.json."
+        + (f" Excluded: {', '.join(res['excluded'])}." if res.get("excluded") else ""),
         "",
         "| arm | k | SD (g) | 5-95% width (g) | mean abs. error (g) |",
         "|---|---|---|---|---|",
@@ -154,21 +161,27 @@ def main():
     ap.add_argument("--april-dir", type=Path, default=Path(os.environ.get(
         "APRIL_RESULTS_DIR", Path.home() / "LLM-API-Tests" / "batch_analysis" / "results")))
     ap.add_argument("--draws", type=int, default=DEFAULT_DRAWS)
+    ap.add_argument("--exclude", nargs="*", default=[], help="photographs to leave out")
+    ap.add_argument("--tag", default="", help="suffix for the output file names")
     args = ap.parse_args()
 
     arm_totals = {a: totals_by_image(load_rerun_arm(a)) for a in args.arms}
     if args.april:
         arm_totals.update({a: totals_by_image(rows) for a, rows in load_april(args.april_dir).items()})
-    arm_totals = {a: t for a, t in arm_totals.items() if t}
+    arm_totals = {a: {img: v for img, v in t.items() if img not in args.exclude}
+                  for a, t in arm_totals.items() if t}
     if not arm_totals:
         raise SystemExit("no results found")
 
     reference = json.load(open(BASE_DIR / "usda_reference.json"))
     res = analyse(arm_totals, reference, draws=args.draws)
     OUT_DIR.mkdir(exist_ok=True)
-    (OUT_DIR / "averaging_check.json").write_text(json.dumps(res, indent=1))
-    write_report(res, OUT_DIR / "AVERAGING_CHECK.md")
-    print((OUT_DIR / "AVERAGING_CHECK.md").read_text())
+    res["excluded"] = args.exclude
+    suffix = f"_{args.tag}" if args.tag else ""
+    (OUT_DIR / f"averaging_check{suffix}.json").write_text(json.dumps(res, indent=1))
+    report = OUT_DIR / f"AVERAGING_CHECK{suffix.upper()}.md"
+    write_report(res, report)
+    print(report.read_text())
 
 
 if __name__ == "__main__":

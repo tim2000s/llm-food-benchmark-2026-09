@@ -1,0 +1,127 @@
+{
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "n_images": 13,
+  "images": [
+    "IMG-20260410-WA0016.jpg",
+    "IMG-20260410-WA0017.jpg",
+    "IMG-20260410-WA0018.jpg",
+    "IMG-20260410-WA0019.jpg",
+    "IMG-20260410-WA0020.jpg",
+    "IMG_20200412_154249.jpg",
+    "IMG_20250915_112359.jpg",
+    "IMG_20260209_192318.jpg",
+    "IMG_20260210_142258.jpg",
+    "MVIMG_20260222_204918.jpg",
+    "MVIMG_20260303_200132.jpg",
+    "MVIMG_20260304_120022.jpg",
+    "MVIMG_20260308_142023.jpg"
+  ],
+  "n_requests": 21,
+  "sub_index": 0,
+  "n_subbatches": 0,
+  "submitted_at": "2026-09-21T11:14:59.413484+00:00",
+  "prompt_sha256": "f5d0539e395750c0c34fe30abbcc48f8235f7966750deb26031376673c903fb2",
+  "max_image_dim": 2048,
+  "jpeg_quality": 85,
+  "id_map": {
+    "idx0": {
+      "iteration": 49,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx1": {
+      "iteration": 49,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx2": {
+      "iteration": 49,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx3": {
+      "iteration": 49,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx4": {
+      "iteration": 49,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx5": {
+      "iteration": 49,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx6": {
+      "iteration": 49,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx7": {
+      "iteration": 49,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx8": {
+      "iteration": 50,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx9": {
+      "iteration": 50,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx10": {
+      "iteration": 50,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx11": {
+      "iteration": 50,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx12": {
+      "iteration": 50,
+      "image_file": "IMG-20260410-WA0020.jpg"
+    },
+    "idx13": {
+      "iteration": 50,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx14": {
+      "iteration": 50,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx15": {
+      "iteration": 50,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx16": {
+      "iteration": 50,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx17": {
+      "iteration": 50,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx18": {
+      "iteration": 50,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx19": {
+      "iteration": 50,
+      "image_file": "MVIMG_20260304_120022.jpg"
+    },
+    "idx20": {
+      "iteration": 50,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    }
+  },
+  "batch_id": "batch_6ab111b2edf08190b2881e0da47bef76",
+  "input_file_id": "file-TEWQr4QQp8aqNtMHk9rFDd",
+  "arm": {
+    "name": "gpt-6-astra",
+    "provider": "openai",
+    "model": "gpt-6-astra",
+    "max_tokens": 16000,
+    "temperature": null,
+    "effort": "low",
+    "price_in": 5.0,
+    "price_out": 25.0
+  },
+  "status": "downloaded",
+  "label": "gpt-6-astra_20260921T111455448174Z"
+}
