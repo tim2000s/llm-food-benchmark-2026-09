@@ -232,6 +232,7 @@ def write_results_file(out_path: Path, model: str, provider: str,
             "elapsed_s": meta_extra.get("elapsed_s", 0),
             "batch_mode": True,
             "batch_provider_id": meta_extra.get("batch_provider_id"),
+            "arm": meta_extra.get("arm"),
         },
         "results": results,
     }
@@ -254,7 +255,10 @@ def build_result_dicts(items: list[dict], model: str, provider: str,
         raw_text (str | None)        # response text, None on hard failure
         usage (dict | None)          # {"input_tokens": int, "output_tokens": int}
         api_error (str | None)       # API-level error string (e.g. "400 Bad Request")
-        api_error_class (str | None) # 'rate_limit', 'transient', 'transport', 'api', or None
+        api_error_class (str | None) # 'rate_limit', 'transient', 'transport', 'api',
+                                     # 'refusal', or None
+        extra (dict | None)          # provider fields copied onto the row as-is
+                                     # (stop_reason, reasoning_tokens, ...)
 
     Returns a list of result-dict objects ready to write to the results file.
     """
@@ -291,5 +295,7 @@ def build_result_dicts(items: list[dict], model: str, provider: str,
             )
             # Latency is genuinely unknown for batch — clear the spurious 0.0
             qr.latency_s = None
-        out.append(serialise_query_result(qr, is_batch=True))
+        row = serialise_query_result(qr, is_batch=True)
+        row.update(item.get("extra") or {})
+        out.append(row)
     return out
