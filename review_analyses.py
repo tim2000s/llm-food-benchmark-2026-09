@@ -200,6 +200,13 @@ def main():
     }
     OUT_DIR.mkdir(exist_ok=True)
     (OUT_DIR / "review_analyses.json").write_text(json.dumps(res, indent=1, default=float))
+    # Figure 1 with the April arms as the median over their ten blocks per photograph.
+    from update_analysis import fig_cv
+    upd = json.load(open(OUT_DIR / "update_analysis.json"))["arms"]
+    for arm, d in res["april_blocks"].items():
+        for img, cv in d["per_photo_cv"].items():
+            upd[arm]["per_image"][img]["cv_pct"] = cv
+    fig_cv(upd, OUT_DIR / "fig1_cv_by_arm_blocks.png")
     write_report(res, labels, OUT_DIR / "REVIEW_ANALYSES.md")
     print((OUT_DIR / "REVIEW_ANALYSES.md").read_text())
 
