@@ -1,0 +1,83 @@
+{
+  "provider": "claude",
+  "model": "claude-fable-5-1",
+  "n_images": 13,
+  "images": [
+    "IMG-20260410-WA0016.jpg",
+    "IMG-20260410-WA0017.jpg",
+    "IMG-20260410-WA0018.jpg",
+    "IMG-20260410-WA0019.jpg",
+    "IMG-20260410-WA0020.jpg",
+    "IMG_20200412_154249.jpg",
+    "IMG_20250915_112359.jpg",
+    "IMG_20260209_192318.jpg",
+    "IMG_20260210_142258.jpg",
+    "MVIMG_20260222_204918.jpg",
+    "MVIMG_20260303_200132.jpg",
+    "MVIMG_20260304_120022.jpg",
+    "MVIMG_20260308_142023.jpg"
+  ],
+  "n_requests": 10,
+  "sub_index": 0,
+  "n_subbatches": 0,
+  "submitted_at": "2026-09-21T10:26:53.128675+00:00",
+  "prompt_sha256": "f5d0539e395750c0c34fe30abbcc48f8235f7966750deb26031376673c903fb2",
+  "max_image_dim": 1568,
+  "jpeg_quality": 85,
+  "id_map": {
+    "idx0": {
+      "iteration": 29,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx1": {
+      "iteration": 30,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx2": {
+      "iteration": 38,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx3": {
+      "iteration": 42,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx4": {
+      "iteration": 42,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx5": {
+      "iteration": 43,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx6": {
+      "iteration": 45,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx7": {
+      "iteration": 46,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx8": {
+      "iteration": 48,
+      "image_file": "IMG-20260410-WA0019.jpg"
+    },
+    "idx9": {
+      "iteration": 49,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    }
+  },
+  "batch_id": "msgbatch_01XpuHETQxxndyGm4Lxb5Jkx",
+  "arm": {
+    "name": "fable-5-1",
+    "provider": "claude",
+    "model": "claude-fable-5-1",
+    "max_tokens": 16000,
+    "temperature": null,
+    "effort": "low",
+    "price_in": 5.0,
+    "price_out": 25.0
+  },
+  "status": "abandoned",
+  "label": "fable-5-1_20260921T102650021478Z",
+  "abandon_reason": "duplicate submission, cancelled 21 Sep 2026"
+}

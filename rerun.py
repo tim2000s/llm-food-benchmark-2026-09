@@ -116,22 +116,25 @@ def live_states(arm_name: str) -> list[tuple[Path, dict]]:
 
 
 def covered_pairs(arm_name: str) -> set[tuple[int, str]]:
-    """Pairs that need no further submission: those in a live chunk, less any
-    whose downloaded row failed at the API (credit, rate or server errors),
-    which are worth sending again. Refusals and parse failures are results and
-    are not resubmitted."""
-    covered, retry = set(), set()
+    """Pairs that need no further submission.
+
+    A pair is covered while any live chunk holding it is still in flight, and
+    once any downloaded row for it is an answer, a refusal or a parse failure.
+    A pair whose only downloaded rows failed at the API (credit, rate or
+    server errors) is not covered and is sent again. Counting in-flight chunks
+    matters for providers whose chunks are submitted without waiting: without
+    it, a retry chunk did not cover its own pairs and was resubmitted in a loop.
+    """
+    covered = set()
     for _, meta in live_states(arm_name):
-        covered |= {(e["iteration"], e["image_file"]) for e in meta["id_map"].values()}
+        pairs = {(e["iteration"], e["image_file"]) for e in meta["id_map"].values()}
         results = arm_dir(arm_name) / f"results_{meta['batch_id']}.json"
-        if meta.get("status") == "downloaded" and results.exists():
-            retry |= {(r["iteration"], r["image_file"]) for r in json.load(open(results))["results"]
-                      if not r["success"] and r.get("error_class") == "api"}
-    succeeded = set()
-    for f in arm_dir(arm_name).glob("results_*.json"):
-        succeeded |= {(r["iteration"], r["image_file"]) for r in json.load(open(f))["results"]
-                      if r["success"] or r.get("error_class") != "api"}
-    return covered - (retry - succeeded)
+        if meta.get("status") != "downloaded" or not results.exists():
+            covered |= pairs
+            continue
+        covered |= {(r["iteration"], r["image_file"]) for r in json.load(open(results))["results"]
+                    if r["success"] or r.get("error_class") != "api"}
+    return covered
 
 
 def chunk_size(mod, arm: dict, image_data: dict[str, str], cap: int) -> int:

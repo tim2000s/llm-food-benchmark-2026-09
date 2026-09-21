@@ -273,6 +273,9 @@ if __name__ == "__main__":
     unittest.main()
 
 
+_BATCH_IDS = __import__("itertools").count()
+
+
 class FakeProvider:
     """Stands in for a provider module's Provider. The first batch can be made
     to fail on the enqueued-token limit, as an OpenAI organisation limit would."""
@@ -282,7 +285,9 @@ class FakeProvider:
         self.fail_next = fail_first_on_token_limit
 
     def submit(self, requests, state_dir, label):
-        bid = f"b{len(self.batches)}"
+        # Unique across instances, as real batch IDs are; a second run must not
+        # overwrite the first run's results file.
+        bid = f"b{next(_BATCH_IDS)}"
         self.batches[bid] = {"requests": requests, "token_limit": self.fail_next}
         self.fail_next = False
         return {"batch_id": bid}
@@ -341,3 +346,39 @@ class TestRunArm(unittest.TestCase):
             self.assertLessEqual(max(sizes[1:]), 13)
             states = [json.load(open(f))["status"] for f in rerun.state_dir("gpt-6-astra").glob("chunk_*.json")]
             self.assertEqual(states.count("abandoned"), 1)
+
+
+class TestRetryFlow(unittest.TestCase):
+    """The 21 September resend: an Anthropic arm (no waiting between chunks)
+    with API-error rows from an earlier run resubmitted the same retry chunk
+    in a loop, because the in-flight retry did not count as covering them."""
+
+    def test_api_errors_are_resent_exactly_once(self):
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(rerun, "RESULTS_DIR", Path(d)):
+            first = FakeProvider()
+            first.fetch_error_ids = {"idx0", "idx1"}
+            orig_fetch = FakeProvider.fetch
+
+            def fetch_with_errors(self, batch_id):
+                items = orig_fetch(self, batch_id)
+                for it in items:
+                    if it["custom_id"] in getattr(self, "fetch_error_ids", set()):
+                        it.update(raw_text=None, api_error="credit", api_error_class="api")
+                return items
+
+            with mock.patch.object(FakeProvider, "fetch", fetch_with_errors):
+                TestRunArm._run(self, "fable-5-1", first, iterations=1, cap=1000)
+            second = FakeProvider()
+            TestRunArm._run(self, "fable-5-1", second, iterations=1, cap=1000)
+            self.assertEqual([len(b["requests"]) for b in second.batches.values()], [2])
+            rows = TestRunArm._rows(self, "fable-5-1")
+            ok = {(r["iteration"], r["image_file"]) for r in rows if r["success"]}
+            self.assertEqual(ok, set(rerun.all_pairs(1, rerun.discover_images())))
+
+    def test_in_flight_retry_counts_as_covered(self):
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(rerun, "RESULTS_DIR", Path(d)):
+            TestResume._downloaded(self, d, {"b1": [(2, "a.jpg", False, "api")]})
+            _, id_map = make_id_mapping([(2, "a.jpg")])
+            (rerun.state_dir("x") / "chunk_b2.json").write_text(json.dumps(
+                {"status": "submitted", "batch_id": "b2", "id_map": id_map}))
+            self.assertEqual(rerun.covered_pairs("x"), {(2, "a.jpg")})

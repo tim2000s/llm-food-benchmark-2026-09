@@ -1,0 +1,115 @@
+{
+  "provider": "claude",
+  "model": "claude-sonnet-4-6",
+  "n_images": 13,
+  "images": [
+    "IMG-20260410-WA0016.jpg",
+    "IMG-20260410-WA0017.jpg",
+    "IMG-20260410-WA0018.jpg",
+    "IMG-20260410-WA0019.jpg",
+    "IMG-20260410-WA0020.jpg",
+    "IMG_20200412_154249.jpg",
+    "IMG_20250915_112359.jpg",
+    "IMG_20260209_192318.jpg",
+    "IMG_20260210_142258.jpg",
+    "MVIMG_20260222_204918.jpg",
+    "MVIMG_20260303_200132.jpg",
+    "MVIMG_20260304_120022.jpg",
+    "MVIMG_20260308_142023.jpg"
+  ],
+  "n_requests": 18,
+  "sub_index": 0,
+  "n_subbatches": 0,
+  "submitted_at": "2026-09-21T10:26:56.779400+00:00",
+  "prompt_sha256": "f5d0539e395750c0c34fe30abbcc48f8235f7966750deb26031376673c903fb2",
+  "max_image_dim": 1568,
+  "jpeg_quality": 85,
+  "id_map": {
+    "idx0": {
+      "iteration": 36,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx1": {
+      "iteration": 36,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx2": {
+      "iteration": 36,
+      "image_file": "MVIMG_20260303_200132.jpg"
+    },
+    "idx3": {
+      "iteration": 36,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx4": {
+      "iteration": 37,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx5": {
+      "iteration": 37,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx6": {
+      "iteration": 39,
+      "image_file": "MVIMG_20260308_142023.jpg"
+    },
+    "idx7": {
+      "iteration": 40,
+      "image_file": "MVIMG_20260222_204918.jpg"
+    },
+    "idx8": {
+      "iteration": 41,
+      "image_file": "IMG_20260209_192318.jpg"
+    },
+    "idx9": {
+      "iteration": 41,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx10": {
+      "iteration": 42,
+      "image_file": "IMG-20260410-WA0016.jpg"
+    },
+    "idx11": {
+      "iteration": 43,
+      "image_file": "IMG_20200412_154249.jpg"
+    },
+    "idx12": {
+      "iteration": 44,
+      "image_file": "IMG-20260410-WA0018.jpg"
+    },
+    "idx13": {
+      "iteration": 44,
+      "image_file": "IMG_20260210_142258.jpg"
+    },
+    "idx14": {
+      "iteration": 46,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx15": {
+      "iteration": 49,
+      "image_file": "IMG-20260410-WA0017.jpg"
+    },
+    "idx16": {
+      "iteration": 50,
+      "image_file": "IMG_20250915_112359.jpg"
+    },
+    "idx17": {
+      "iteration": 50,
+      "image_file": "IMG_20260210_142258.jpg"
+    }
+  },
+  "batch_id": "msgbatch_01FetvB47GS6HiYGPnf4QQYA",
+  "arm": {
+    "name": "sonnet-4-6-default",
+    "provider": "claude",
+    "model": "claude-sonnet-4-6",
+    "max_tokens": 8000,
+    "temperature": null,
+    "effort": null,
+    "price_in": 1.5,
+    "price_out": 7.5
+  },
+  "status": "abandoned",
+  "label": "sonnet-4-6-default_20260921T102648767267Z",
+  "abandon_reason": "duplicate submission, cancelled 21 Sep 2026"
+}
