@@ -434,3 +434,31 @@ class TestAveragingRisk(unittest.TestCase):
         res = ar.run({"x": {"a.jpg": [40.0] * 10}}, self.REF, np.median, replace=False, seed=1,
                      ks=(1, 5, 20), draws=100, exclude=frozenset())["per_photo"]
         self.assertEqual(sorted(res["x"]["a.jpg"]), [1, 5])
+
+
+import review_analyses as rv
+
+
+class TestReviewAnalyses(unittest.TestCase):
+    def test_icr_threshold_scales_with_ratio(self):
+        ref = {"a.jpg": {"total_portion_carbs_g": 40, "reference_quality": 1}}
+        vals = [55.0] * 50                       # 15 g over: > 2 U at 1 U/5 g only
+        res = rv.icr_sensitivity({"x": {"a.jpg": vals}}, ref, np.random.default_rng(0))["x"]
+        self.assertEqual(res[5]["one_call"], 1.0)
+        self.assertEqual(res[10]["one_call"], 0.0)
+        self.assertEqual(res[20]["twenty_calls"], 0.0)
+
+    def test_failures_expected_attempts(self):
+        rows = {arm: [] for arm, _ in rv.ARMS}
+        rows["fable-5-1"] = ([{"iteration": i, "image_file": "a.jpg", "success": i > 40, "error_class": None if i > 40 else "parse",
+                               "food_items": []} for i in range(1, 51)])
+        f = rv.failures(rows)["fable-5-1"]["per_photo"]["a.jpg"]
+        self.assertEqual(f["failed"], 40)
+        self.assertAlmostEqual(f["expected_attempts"], 5.0)
+        self.assertAlmostEqual(f["p_none_after_3"], 0.512)
+
+    def test_photographs_needed_grows_with_spread(self):
+        small = rv.photographs_needed({"mae_pairs_detail": [{"a": "x", "b": "y", "diffs": [1, -1, 2, -2]}]})
+        big = rv.photographs_needed({"mae_pairs_detail": [{"a": "x", "b": "y", "diffs": [10, -10, 20, -20]}]})
+        self.assertLess(small["x vs y"]["n_for_5g"], big["x vs y"]["n_for_5g"])
+        self.assertEqual(big["x vs y"]["n_for_5g"], int(np.ceil((2.8015852 * np.std([10, -10, 20, -20], ddof=1) / 5) ** 2)))

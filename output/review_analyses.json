@@ -1,0 +1,502 @@
+{
+ "april_blocks": {
+  "sonnet-4-6-april": {
+   "median_over_blocks": {
+    "cv_median": 2.3545973992160305,
+    "cv_mean": 5.434055965725713,
+    "cv_max": 29.659193869555324,
+    "p5_p95_median_g": 3.4642499999999927,
+    "range_median_g": 7.3475,
+    "insulin_range_median_u": 0.73475,
+    "images_range_over_2u": 2.0,
+    "images_range_over_5u": 1.0
+   },
+   "range_over_blocks": {
+    "cv_median": [
+     1.899205593156968,
+     2.889841542805617
+    ],
+    "cv_mean": [
+     4.636867564126289,
+     5.886922716555992
+    ],
+    "cv_max": [
+     20.024446956122098,
+     31.829886799737146
+    ],
+    "p5_p95_median_g": [
+     3.0,
+     4.5
+    ],
+    "range_median_g": [
+     6.200000000000003,
+     7.740000000000002
+    ],
+    "insulin_range_median_u": [
+     0.6200000000000003,
+     0.7740000000000002
+    ],
+    "images_range_over_2u": [
+     2.0,
+     3.0
+    ],
+    "images_range_over_5u": [
+     1.0,
+     1.0
+    ]
+   },
+   "per_photo_cv": {
+    "IMG-20260410-WA0016.jpg": 6.58866130628229,
+    "IMG-20260410-WA0017.jpg": 1.8484464175984334,
+    "IMG-20260410-WA0018.jpg": 3.246567477001655,
+    "IMG-20260410-WA0019.jpg": 2.6825325841965304,
+    "IMG-20260410-WA0020.jpg": 29.659193869555324,
+    "IMG_20200412_154249.jpg": 14.988317467810798,
+    "IMG_20250915_112359.jpg": 1.7803641157551389,
+    "IMG_20260209_192318.jpg": 1.9223403431049986,
+    "IMG_20260210_142258.jpg": 0.2292375745015378,
+    "MVIMG_20260222_204918.jpg": 2.3282209997921,
+    "MVIMG_20260303_200132.jpg": 2.077969421276857,
+    "MVIMG_20260304_120022.jpg": 0.830912786353171,
+    "MVIMG_20260308_142023.jpg": 2.8110672929648532
+   },
+   "cv_median_ci": [
+    2.3282209997921,
+    1.8484464175984334,
+    3.246567477001655
+   ],
+   "p5_p95_median_ci": [
+    3.790499999999991,
+    1.9600000000000009,
+    6.840000000000003
+   ],
+   "vs_default": {
+    "median_diff_points": 2.146650466337211,
+    "default_higher_in": 11,
+    "n": 13,
+    "wilcoxon_p": 0.026611328125
+   }
+  },
+  "gpt-5-4-april": {
+   "median_over_blocks": {
+    "cv_median": 7.002820984521794,
+    "cv_mean": 8.349961569036243,
+    "cv_max": 22.540277171248572,
+    "p5_p95_median_g": 12.25,
+    "range_median_g": 18.400000000000006,
+    "insulin_range_median_u": 1.8400000000000005,
+    "images_range_over_2u": 5.0,
+    "images_range_over_5u": 2.0
+   },
+   "range_over_blocks": {
+    "cv_median": [
+     4.257934248086509,
+     9.082937135797343
+    ],
+    "cv_mean": [
+     7.105506811462826,
+     9.607447737437665
+    ],
+    "cv_max": [
+     17.442852878594433,
+     28.562296360577818
+    ],
+    "p5_p95_median_g": [
+     6.400000000000006,
+     13.794999999999995
+    ],
+    "range_median_g": [
+     13.200000000000003,
+     20.44999999999999
+    ],
+    "insulin_range_median_u": [
+     1.3200000000000003,
+     2.044999999999999
+    ],
+    "images_range_over_2u": [
+     4.0,
+     7.0
+    ],
+    "images_range_over_5u": [
+     2.0,
+     3.0
+    ]
+   },
+   "per_photo_cv": {
+    "IMG-20260410-WA0016.jpg": 5.95426217000254,
+    "IMG-20260410-WA0017.jpg": 4.793465835775876,
+    "IMG-20260410-WA0018.jpg": 4.751728531468904,
+    "IMG-20260410-WA0019.jpg": 3.031655540822943,
+    "IMG-20260410-WA0020.jpg": 14.862902449480313,
+    "IMG_20200412_154249.jpg": 8.297259857822755,
+    "IMG_20250915_112359.jpg": 7.782743947005015,
+    "IMG_20260209_192318.jpg": 9.204756366204453,
+    "IMG_20260210_142258.jpg": 16.88275427863794,
+    "MVIMG_20260222_204918.jpg": 10.554900248558045,
+    "MVIMG_20260303_200132.jpg": 0.48724504720224693,
+    "MVIMG_20260304_120022.jpg": 7.023369069230636,
+    "MVIMG_20260308_142023.jpg": 18.584088055538956
+   },
+   "cv_median_ci": [
+    7.782743947005015,
+    4.793465835775876,
+    10.554900248558045
+   ],
+   "p5_p95_median_ci": [
+    12.942075000000003,
+    8.260000000000005,
+    21.34725
+   ],
+   "vs_default": {
+    "median_diff_points": 3.0903894958871856,
+    "default_higher_in": 12,
+    "n": 13,
+    "wilcoxon_p": 0.001220703125
+   }
+  }
+ },
+ "failures": {
+  "fable-5-1": {
+   "per_photo": {
+    "MVIMG_20260308_142023.jpg": {
+     "calls": 50,
+     "failed": 2,
+     "rate": 0.04,
+     "expected_attempts": 1.0416666666666667,
+     "p_none_after_3": 6.400000000000001e-05
+    }
+   },
+   "rate_excluding_churros": 0.0033333333333333335
+  },
+  "gpt-6-astra": {
+   "per_photo": {
+    "IMG-20260410-WA0018.jpg": {
+     "calls": 50,
+     "failed": 4,
+     "rate": 0.08,
+     "expected_attempts": 1.0869565217391304,
+     "p_none_after_3": 0.0005120000000000001
+    },
+    "IMG-20260410-WA0020.jpg": {
+     "calls": 50,
+     "failed": 1,
+     "rate": 0.02,
+     "expected_attempts": 1.0204081632653061,
+     "p_none_after_3": 8.000000000000001e-06
+    },
+    "IMG_20250915_112359.jpg": {
+     "calls": 50,
+     "failed": 1,
+     "rate": 0.02,
+     "expected_attempts": 1.0204081632653061,
+     "p_none_after_3": 8.000000000000001e-06
+    },
+    "MVIMG_20260222_204918.jpg": {
+     "calls": 50,
+     "failed": 40,
+     "rate": 0.8,
+     "expected_attempts": 5.000000000000001,
+     "p_none_after_3": 0.5120000000000001
+    }
+   },
+   "rate_excluding_churros": 0.01
+  },
+  "sonnet-4-6-default": {
+   "per_photo": {},
+   "rate_excluding_churros": 0.0
+  },
+  "sonnet-4-6-april": {
+   "per_photo": {},
+   "rate_excluding_churros": 0.0
+  },
+  "gpt-5-4-default": {
+   "per_photo": {},
+   "rate_excluding_churros": 0.0
+  },
+  "gpt-5-4-april": {
+   "per_photo": {},
+   "rate_excluding_churros": 0.0
+  }
+ },
+ "icr": {
+  "fable-5-1": {
+   "5": {
+    "one_call": 0.15999999999999998,
+    "twenty_calls": 0.19406
+   },
+   "10": {
+    "one_call": 0.0,
+    "twenty_calls": 0.0
+   },
+   "20": {
+    "one_call": 0.0,
+    "twenty_calls": 0.0
+   }
+  },
+  "gpt-6-astra": {
+   "5": {
+    "one_call": 0.359265306122449,
+    "twenty_calls": 0.39994
+   },
+   "10": {
+    "one_call": 0.19208163265306122,
+    "twenty_calls": 0.2
+   },
+   "20": {
+    "one_call": 0.08399999999999999,
+    "twenty_calls": 0.04976
+   }
+  },
+  "sonnet-4-6-default": {
+   "5": {
+    "one_call": 0.152,
+    "twenty_calls": 0.16614
+   },
+   "10": {
+    "one_call": 0.0,
+    "twenty_calls": 0.0
+   },
+   "20": {
+    "one_call": 0.0,
+    "twenty_calls": 0.0
+   }
+  },
+  "sonnet-4-6-april": {
+   "5": {
+    "one_call": 0.152,
+    "twenty_calls": 0.1995
+   },
+   "10": {
+    "one_call": 0.0,
+    "twenty_calls": 0.0
+   },
+   "20": {
+    "one_call": 0.0,
+    "twenty_calls": 0.0
+   }
+  },
+  "gpt-5-4-default": {
+   "5": {
+    "one_call": 0.376,
+    "twenty_calls": 0.39998
+   },
+   "10": {
+    "one_call": 0.348,
+    "twenty_calls": 0.39998
+   },
+   "20": {
+    "one_call": 0.032,
+    "twenty_calls": 0.0
+   }
+  },
+  "gpt-5-4-april": {
+   "5": {
+    "one_call": 0.384,
+    "twenty_calls": 0.4
+   },
+   "10": {
+    "one_call": 0.384,
+    "twenty_calls": 0.4
+   },
+   "20": {
+    "one_call": 0.028000000000000004,
+    "twenty_calls": 0.0
+   }
+  }
+ },
+ "identification_effect": {
+  "fable-5-1": {
+   "IMG-20260410-WA0019.jpg|crema catalana": {
+    "n_named": 38,
+    "n_other": 12,
+    "mean_named_g": 27.928947368421046,
+    "mean_other_g": 27.325,
+    "difference_g": 0.6039473684210463,
+    "reference_g": null
+   },
+   "IMG-20260410-WA0019.jpg|creme brulee only": {
+    "n_named": 12,
+    "n_other": 38,
+    "mean_named_g": 27.325,
+    "mean_other_g": 27.928947368421046,
+    "difference_g": -0.6039473684210463,
+    "reference_g": null
+   },
+   "MVIMG_20260308_142023.jpg|pork": {
+    "n_named": 26,
+    "n_other": 22,
+    "mean_named_g": 26.693076923076923,
+    "mean_other_g": 27.12727272727273,
+    "difference_g": -0.43419580419580583,
+    "reference_g": 40
+   },
+   "MVIMG_20260308_142023.jpg|chicken": {
+    "n_named": 22,
+    "n_other": 26,
+    "mean_named_g": 27.12727272727273,
+    "mean_other_g": 26.693076923076923,
+    "difference_g": 0.43419580419580583,
+    "reference_g": 40
+   }
+  },
+  "gpt-6-astra": {
+   "IMG_20250915_112359.jpg|Bakewell": {
+    "n_named": 36,
+    "n_other": 13,
+    "mean_named_g": 53.03111111111112,
+    "mean_other_g": 54.42623076923076,
+    "difference_g": -1.39511965811964,
+    "reference_g": 40
+   },
+   "MVIMG_20260308_142023.jpg|pork": {
+    "n_named": 29,
+    "n_other": 21,
+    "mean_named_g": 30.76103448275862,
+    "mean_other_g": 39.679523809523815,
+    "difference_g": -8.918489326765194,
+    "reference_g": 40
+   },
+   "IMG-20260410-WA0017.jpg|burrata": {
+    "n_named": 48,
+    "n_other": 2,
+    "mean_named_g": 126.23004166666665,
+    "mean_other_g": 123.39250000000001,
+    "difference_g": 2.837541666666638,
+    "reference_g": null
+   }
+  },
+  "sonnet-4-6-default": {
+   "MVIMG_20260308_142023.jpg|chicken": {
+    "n_named": 1,
+    "n_other": 49,
+    "mean_named_g": 43.415,
+    "mean_other_g": 42.52438775510205,
+    "difference_g": 0.8906122448979517,
+    "reference_g": 40
+   },
+   "IMG_20260210_142258.jpg|deli meat or ham": {
+    "n_named": 6,
+    "n_other": 44,
+    "mean_named_g": 28.49066666666667,
+    "mean_other_g": 29.301272727272735,
+    "difference_g": -0.8106060606060659,
+    "reference_g": 40
+   }
+  },
+  "sonnet-4-6-april": {
+   "MVIMG_20260308_142023.jpg|chicken": {
+    "n_named": 13,
+    "n_other": 37,
+    "mean_named_g": 44.391538461538474,
+    "mean_other_g": 44.987432432432435,
+    "difference_g": -0.595893970893961,
+    "reference_g": 40
+   },
+   "IMG-20260410-WA0017.jpg|burrata": {
+    "n_named": 9,
+    "n_other": 41,
+    "mean_named_g": 152.09666666666666,
+    "mean_other_g": 146.45243902439026,
+    "difference_g": 5.644227642276405,
+    "reference_g": null
+   },
+   "IMG_20260210_142258.jpg|deli meat or ham": {
+    "n_named": 1,
+    "n_other": 49,
+    "mean_named_g": 28.98,
+    "mean_other_g": 28.17844897959184,
+    "difference_g": 0.8015510204081622,
+    "reference_g": 40
+   }
+  },
+  "gpt-5-4-default": {
+   "IMG-20260410-WA0017.jpg|burrata": {
+    "n_named": 17,
+    "n_other": 33,
+    "mean_named_g": 134.6588235294118,
+    "mean_other_g": 130.27272727272728,
+    "difference_g": 4.38609625668451,
+    "reference_g": null
+   }
+  },
+  "gpt-5-4-april": {}
+ },
+ "photographs_needed": {
+  "fable-5-1 vs sonnet-4-6-default": {
+   "sd_g": 6.225133575017528,
+   "n_images": 9,
+   "n_for_5g": 13,
+   "n_for_10g": 4
+  },
+  "gpt-6-astra vs gpt-5-4-default": {
+   "sd_g": 13.385987334954542,
+   "n_images": 9,
+   "n_for_5g": 57,
+   "n_for_10g": 15
+  },
+  "fable-5-1 vs gpt-6-astra": {
+   "sd_g": 12.073324087817241,
+   "n_images": 9,
+   "n_for_5g": 46,
+   "n_for_10g": 12
+  }
+ },
+ "annual_cost": {
+  "fable-5-1": {
+   "1": {
+    "batch_usd": 66.38985000000001,
+    "realtime_usd": 132.77970000000002
+   },
+   "5": {
+    "batch_usd": 331.94925,
+    "realtime_usd": 663.8985
+   },
+   "20": {
+    "batch_usd": 1327.797,
+    "realtime_usd": 2655.594
+   }
+  },
+  "gpt-6-astra": {
+   "1": {
+    "batch_usd": 68.3061,
+    "realtime_usd": 136.6122
+   },
+   "5": {
+    "batch_usd": 341.53049999999996,
+    "realtime_usd": 683.0609999999999
+   },
+   "20": {
+    "batch_usd": 1366.1219999999998,
+    "realtime_usd": 2732.2439999999997
+   }
+  },
+  "sonnet-4-6-default": {
+   "1": {
+    "batch_usd": 19.52385,
+    "realtime_usd": 39.0477
+   },
+   "5": {
+    "batch_usd": 97.61925,
+    "realtime_usd": 195.2385
+   },
+   "20": {
+    "batch_usd": 390.477,
+    "realtime_usd": 780.954
+   }
+  },
+  "gpt-5-4-default": {
+   "1": {
+    "batch_usd": 12.8772,
+    "realtime_usd": 25.7544
+   },
+   "5": {
+    "batch_usd": 64.386,
+    "realtime_usd": 128.772
+   },
+   "20": {
+    "batch_usd": 257.544,
+    "realtime_usd": 515.088
+   }
+  }
+ }
+}
