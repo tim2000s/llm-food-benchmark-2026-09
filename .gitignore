@@ -2,3 +2,6 @@ __pycache__/
 .DS_Store
 results/**/*.jsonl
 results/**/run.log
+
+.venv/
+.pytest_cache/
