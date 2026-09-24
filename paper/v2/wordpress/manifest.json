@@ -1,0 +1,12 @@
+{
+  "source": "paper/v2/build/build_article.py",
+  "title": "OpenAI says it\u2019s up to us whether GPT-6 Astra is AGI. At counting carbs, it\u2019s no better than you.",
+  "figures": [
+    "v2_fig4_meals.png",
+    "v2_fig5_violin.png",
+    "fig3_risk_by_k.png",
+    "fig4_overdose_by_photo.png"
+  ],
+  "content_blocks": 125,
+  "zenodo": "https://doi.org/10.5281/zenodo.22879139"
+}
